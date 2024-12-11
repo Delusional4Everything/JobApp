@@ -18,4 +18,9 @@ public class JobController {
         jobs.add(job);
         return "job add successfully";
     }
+    @PostMapping("/getAll")
+    public String getAllJob(@RequestBody Job job){
+        jobs.add(job);
+        return "job add successfully";
+    }
 }
