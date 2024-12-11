@@ -10,4 +10,8 @@ public class Job {
     private String currentCtc;
     private String expectedCtc;
     private String location;
+
+
+    public Job(long l, String testJob, String testJob1, String xx, String xx1, String unknown) {
+    }
 }

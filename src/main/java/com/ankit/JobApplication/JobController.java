@@ -7,20 +7,27 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "api/" )
 public class JobController {
-    private final List<Job> jobs = new ArrayList<>();
+    private JobService jobService;
+
+    public JobController(JobService jobService) {
+        this.jobService = jobService;
+    }
+
     @GetMapping("/jobs")
     public List<Job> findAll(){
-        return jobs;
+        return jobService.findAll();
+    }
+
+    @GetMapping("/job/{id}")
+    public Job findById(@PathVariable Long id){
+        Job job = jobService.getById(id);
+        return job;
     }
 
     @PostMapping("/createJob")
     public String createJob(@RequestBody Job job){
-        jobs.add(job);
+        jobService.createJob(job);
         return "job add successfully";
     }
-    @PostMapping("/getAll")
-    public String getAllJob(@RequestBody Job job){
-        jobs.add(job);
-        return "job add successfully";
-    }
+
 }
