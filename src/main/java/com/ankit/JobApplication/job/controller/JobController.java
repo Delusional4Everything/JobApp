@@ -1,11 +1,12 @@
-package com.ankit.JobApplication;
+package com.ankit.JobApplication.job.controller;
 
+import com.ankit.JobApplication.job.entity.Job;
+import com.ankit.JobApplication.job.repository.JobRepo;
+import com.ankit.JobApplication.job.sevices.JobService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,8 +28,8 @@ public class JobController {
     }
 
     @GetMapping("/job/{id}")
-    public ResponseEntity<Optional<Job>> findById(@PathVariable Long id){
-        Optional<Job> job = jobService.getById(id);
+    public ResponseEntity<Job> findById(@PathVariable Long id){
+        Job job = jobService.getById(id);
         return new ResponseEntity<>(job, HttpStatus.OK);
     }
 

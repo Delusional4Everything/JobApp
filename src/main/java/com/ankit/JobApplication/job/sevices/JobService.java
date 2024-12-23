@@ -1,6 +1,6 @@
-package com.ankit.JobApplication;
+package com.ankit.JobApplication.job.sevices;
 
-import org.springframework.transaction.annotation.Transactional;
+import com.ankit.JobApplication.job.entity.Job;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ public interface JobService {
     List<Job> findAll();
     void createJob(Job job);
 
-    Optional<Job> getById(Long id);
+    Job getById(Long id);
 
     Boolean deleteById(Long id);
 
