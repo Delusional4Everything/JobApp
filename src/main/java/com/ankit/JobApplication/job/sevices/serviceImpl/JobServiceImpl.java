@@ -1,6 +1,9 @@
-package com.ankit.JobApplication;
+package com.ankit.JobApplication.job.sevices.serviceImpl;
 
 
+import com.ankit.JobApplication.job.entity.Job;
+import com.ankit.JobApplication.job.repository.JobRepo;
+import com.ankit.JobApplication.job.sevices.JobService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,7 +11,8 @@ import java.util.List;
 import java.util.Optional;
 @Transactional
 @Service
-public class JobServiceImpl implements JobService{
+public class JobServiceImpl implements JobService {
+    Long nextInd= 0L;
     private final JobRepo jobRepo;
 
     public JobServiceImpl(JobRepo jobRepo) {
@@ -25,16 +29,15 @@ public class JobServiceImpl implements JobService{
 
     @Override
     public void createJob(Job job) {
-        System.out.println("Version before save: " + job.getVersion());
+        job.setId(nextInd++);
         jobRepo.save(job);
-        System.out.println("Version after save: " + job.getVersion());
-        System.out.println("hello3");
+
 
     }
 
     @Override
-    public Optional<Job> getById(Long id) {
-       return Optional.ofNullable(jobRepo.findById(id).orElse(null));
+    public Job getById(Long id) {
+       return jobRepo.findById(id).orElse(null);
     }
 
     @Override
